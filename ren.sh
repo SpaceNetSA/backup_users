@@ -14,14 +14,9 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
     if [ $hoje -ge $databr ]
     then
     data="\033[1;31mVenceu\033[0m"
-    else
-    dat="$(date -d"$datauser" '+%Y-%m-%d')"
-    data=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDias\033[0m")
-    #variável data retornando dias restantes
-            if [ $data -gt 4 ]
-            then
-            data=""
-            fi
+    else  
+    drest=$(expr $databr - $hoje)
+    data=$drest
     fi
 
 #dados mais importantes para trabalhar com api ou bot.
