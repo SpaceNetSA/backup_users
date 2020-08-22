@@ -5,6 +5,8 @@ echo -e "\e[44;37;1m Usuario         Validade \e[m"
 echo ""
 
 #Função que retorna se a validade é igual a Venceu, Nunca ou número de dias.
+for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |sort |grep -v "nobody" |grep -vi polkitd |grep -vi system-`
+do
 datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
 if [ $datauser = never ] 2> /dev/null
 then
