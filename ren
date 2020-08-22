@@ -24,7 +24,10 @@ else
 fi
 #dados mais importantes para trabalhar com api ou bot.
 Usuario=$(printf ' %-15s' "$users")
+if [[ $data -le 4 ]] || $data="\033[1;31mVenceu\033[0m" || $data="\033[1;33mNunca\033[0m"
+then
 Data=$(printf '%-1s' "$data")
+fi
 #imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca).
 echo -e "\033[1;33m$Usuario \033[1;32m$Data\033[0m"
 #linha sequencial que separa as informações de cada usuário.
