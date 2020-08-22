@@ -8,10 +8,7 @@ echo ""
 for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |sort |grep -v "nobody" |grep -vi polkitd |grep -vi system-`
 do
 datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
-if [ $datauser = never ] 2> /dev/null
-then
-data="\033[1;33mNunca\033[0m"
-else
+
     databr="$(date -d "$datauser" +"%Y%m%d")"
     hoje="$(date -d today +"%Y%m%d")"
     if [ $hoje -ge $databr ]
@@ -20,14 +17,17 @@ else
     else
     dat="$(date -d"$datauser" '+%Y-%m-%d')"
     data=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDias\033[0m")
+    #variável data retornando dias restantes
+            if[ $data -gt 4 ]
+            then
+            data=""
+            fi
     fi
-fi
+
 #dados mais importantes para trabalhar com api ou bot.
 Usuario=$(printf ' %-15s' "$users")
-if [[ $data -le 4 ]] || $data="\033[1;31mVenceu\033[0m" || $data="\033[1;33mNunca\033[0m"
-then
 Data=$(printf '%-1s' "$data")
-fi
+
 #imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca).
 echo -e "\033[1;33m$Usuario \033[1;32m$Data\033[0m"
 #linha sequencial que separa as informações de cada usuário.
