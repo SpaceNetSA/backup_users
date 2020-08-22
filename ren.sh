@@ -18,7 +18,7 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
     dat="$(date -d"$datauser" '+%Y-%m-%d')"
     data=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDias\033[0m")
     #variável data retornando dias restantes
-            if[ $data -gt 4 ]
+            if [ $data -gt 4 ]
             then
             data=""
             fi
