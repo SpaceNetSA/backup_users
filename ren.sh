@@ -13,7 +13,7 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
     hoje="$(date -d today +"%Y%m%d")"
     if [ $hoje -ge $databr ]
     then
-    data="\033[1;31mVenceu\033[0m"
+    dias="\033[1;31mVenceu\033[0m"
     else
     #a diferença dos dias vencimento-hoje é positiva logo existem dias restantes
            #foi transformado os dias de vencimento e de hoje em segundos em relação ao dia 01 de janeiro de 1970.
@@ -24,18 +24,17 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
            SREST=$(expr $SREN - $SHOJ)
            #foi feito a equivalência em dia dos respectivos segundos.
            DREST=$(expr $SREST / 86400)
-           echo "daleeee $DREST"
            #foi verificado a situação de alerta para avisar os clientes quando estiver próximo do dia de renovação.
            if [ $DREST -le 4 ]  
            then
-           data=$DREST
+           dias=$DREST
            fi
     fi
     
 
 #dados mais importantes para trabalhar com api ou bot.
 Usuario=$(printf ' %-15s' "$users")
-Data=$(printf '%-1s' "$data Dias")
+Data=$(printf '%-1s' "$dias Dias")
 
 #imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca).
 echo -e "\033[1;33m$Usuario \033[1;32m$Data\033[0m"
