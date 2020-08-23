@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 #Usuario e Validade tabela.
+echo -e "\e[47;31;5m ATENÇÃO - RENOVAÇÃO DE CLIENTES \e[m"
 echo -e "\e[44;37;1m Usuario         Validade \e[m"
 echo ""
 
