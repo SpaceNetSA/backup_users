@@ -36,10 +36,10 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
 
 #dados mais importantes para trabalhar com api ou bot.
 Usuario=$(printf ' %-15s' "$users")
-Data=$(printf '%-1s' "$dias Dias")
+DATA2=$(printf '%-1s' "$dias Dias")
 
 #imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca).
-echo -e "\033[1;33m$Usuario \033[1;32m$Data\033[0m"
+echo -e "\033[1;33m$Usuario \033[1;32m$DATA2\033[0m"
 #linha sequencial que separa as informações de cada usuário.
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 done
