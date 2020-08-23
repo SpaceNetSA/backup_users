@@ -24,10 +24,12 @@ datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
            SREST=$(expr $SREN - $SHOJ)
            #foi feito a equivalência em dia dos respectivos segundos.
            DREST=$(expr $SREST / 86400)
+           echo "daleeee $DREST"
            #foi verificado a situação de alerta para avisar os clientes quando estiver próximo do dia de renovação.
            if [ $DREST -le 4 ]  
            then
            dias=$DREST
+           echo $dias
            fi
     fi
     
