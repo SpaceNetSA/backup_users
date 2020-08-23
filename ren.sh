@@ -3,14 +3,14 @@ clear
 #Usuario e Validade tabela.
 echo -e "\e[44;37;1m Usuario         Validade \e[m"
 echo ""
-LINHA=$(echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m")
+
 #Função que retorna se a validade é igual a Venceu, Nunca ou número de dias.
 for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |sort |grep -v "nobody" |grep -vi polkitd |grep -vi system-`
 do
 datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
 Usuario2=""
 dias=""
-ALIN=""
+ALIN="0"
     databr="$(date -d "$datauser" +"%Y%m%d")"
     hoje="$(date -d today +"%Y%m%d")"
     if [ $hoje -ge $databr ]
@@ -42,11 +42,12 @@ ALIN=""
 Usuario=$(printf ' %-15s' "$Usuario2")
 DATA=$(printf '%-1s' "$dias")
 
-#imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca).
-echo -e "$Usuario      $DATA"
+
 #linha sequencial que separa as informações de cada usuário.
-if [ $ALIN=1 ]
+if [ $ALIN -eq 1 ]
 then
-$LINHA
+#imprimi o nome do usuario e dias para expirar(dias, venceu ou nunca.
+echo -e "\033[1;33m$Usuario \033[1;32m$DATA\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 fi
 done
