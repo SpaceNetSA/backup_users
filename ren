@@ -30,7 +30,7 @@ ALIN="0"
            #foi feito a equivalência em dia dos respectivos segundos.
            DREST=$(expr $SREST / 86400)
            #foi verificado a situação de alerta para avisar os clientes quando estiver próximo do dia de renovação.
-           if [ $DREST -le 4 ]  
+           if [ $DREST -eq 2 ]  
            then
            dias="$DREST Dias"
            Usuario2=$users
