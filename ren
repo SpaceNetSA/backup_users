@@ -14,7 +14,7 @@ dias=""
 ALIN="0"
     databr="$(date -d "$datauser" +"%Y%m%d")"
     hoje="$(date -d today +"%Y%m%d")"
-    if [ $hoje -ge $databr ]
+    if [ 10 -ge 15 ]
     then
     ALIN=1
     Usuario2=$users
